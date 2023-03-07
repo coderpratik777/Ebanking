@@ -3,8 +3,11 @@ package com.pratiti.entity;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.pratiti.entity.Customer.Status;
 
 @Entity
 public class Customer  {
@@ -43,14 +48,14 @@ public class Customer  {
 	private String lastName;
 
 	@Column(name="mobile_number")
-	private int mobileNumber;
+	private String mobileNumber;
 
 	@Column(name="source_of_income")
 	private String sourceOfIncome;
 
 	//bi-directional many-to-one association to Address
-	@OneToOne(mappedBy="customer")
-	private Address addresses;
+	@OneToOne(mappedBy="customer",cascade = CascadeType.ALL)
+	private Address address;
 
 	//bi-directional many-to-one association to Beneficiary
 	@OneToMany(mappedBy="customer")
@@ -62,6 +67,21 @@ public class Customer  {
 	
 	@OneToOne(mappedBy = "customer")
 	private Account account;
+	
+	@Enumerated(EnumType.STRING) //we specify this to store the data of the enum value in database	
+	private Status status;
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public static enum Status{
+		ACTIVE,INACTIVE,LOCKED;
+	}
 
 	public Customer() {
 	}
@@ -130,11 +150,11 @@ public class Customer  {
 		this.lastName = lastName;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return this.mobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -190,12 +210,12 @@ public class Customer  {
 		return transaction;
 	}
 
-	public Address getAddresses() {
-		return addresses;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddresses(Address addresses) {
-		this.addresses = addresses;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Account getAccount() {
