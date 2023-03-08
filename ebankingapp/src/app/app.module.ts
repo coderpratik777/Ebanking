@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '../Components/home';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddnewbeneficiaryComponent } from './addnewbeneficiary/addnewbeneficiary.component';
+import { OpenAccountComponent } from './open-account/open-account.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddnewbeneficiaryComponent } from './addnewbeneficiary/addnewbeneficiar
     RegisterComponent,
     NavbarComponent,
     DashboardComponent,
-    AddnewbeneficiaryComponent
+    AddnewbeneficiaryComponent,
+    OpenAccountComponent
   ],
   imports: [
     BrowserModule,
