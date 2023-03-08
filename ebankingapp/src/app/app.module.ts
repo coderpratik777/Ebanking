@@ -1,28 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddnewbeneficiaryComponent } from './addnewbeneficiary/addnewbeneficiary.component';
+import { RouterModule,Routes } from '@angular/router';
+import { AddnewbeneficiaryComponent } from './Components/addnewbeneficiary/addnewbeneficiary.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+
+
+import { HttpClientModule } from '@angular/common/http';
+
+
+const routes:Routes=[
+  {path:'dashboard',component:DashboardComponent},
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'dashboard',component:DashboardComponent}
+  
+]
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    NavbarComponent,
     DashboardComponent,
-    AddnewbeneficiaryComponent
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
